@@ -58,29 +58,6 @@ System.out.println("Count of the list is---->"+listCount);
 	}
 	
 	
-	public ListNode returnFindElemRecursive(ListNode findElem,int key)
-	{
-		
-	if(findElem == null)
-		
-	 return null;	
-		
-	else if(key == findElem.val)
-		return findElem;
-		
-	else
-		return returnFindElemRecursive(findElem.next, key);
-		
-		
-		
-		
-	}
-	
-	
-	
-	
-
-
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		LinkedListDemo demo = new LinkedListDemo();
@@ -101,16 +78,6 @@ System.out.println("Count of the list is---->"+listCount);
 	// Test find element in the list	
 		System.out.println(demo.findelemRecursive(demo.head,1));
 		
-	// Test find element in the list and return the node 	
-		
-		int firstKey = 4;
-		int nextKey = 2;
-		
-	ListNode firstKeyfound = demo.returnFindElemRecursive(demo.head, firstKey);
-	ListNode nextKeyfound = demo.returnFindElemRecursive(demo.head, nextKey);	
-	if(firstKeyfound!=null) System.out.println("Firstkeyfound"+firstKeyfound.val);
-	if(nextKeyfound!=null)	System.out.println("NextKeyFound" +nextKeyfound.val);
-
 		
 	}
 
