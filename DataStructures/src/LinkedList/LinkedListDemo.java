@@ -1,5 +1,7 @@
 package LinkedList;
 
+import java.util.ArrayList;
+
 public class LinkedListDemo {
 
 	ListNode head;
@@ -7,6 +9,7 @@ public class LinkedListDemo {
 	ListNode slowPointPali;
 	ListNode fastPointPali;
 	ListNode reverseCheck;
+	ArrayList<Integer> storeNodeValue = new ArrayList<Integer>();
 	static LinkedListDemo demo;
 
 	static class ListNode {
@@ -195,13 +198,46 @@ public class LinkedListDemo {
 
 	}
 
+	public void removeDuplicates(ListNode dupli) {
+
+		while (dupli != null && dupli.next != null) {
+			if (dupli.val == dupli.next.val) {
+				dupli.next = dupli.next.next;
+			} else {
+				dupli = dupli.next;
+			}
+		}
+	}
+
+	public void removeDuplicatesUnsorted(ListNode dupli) {
+
+		while (dupli != null && dupli.next != null) {
+
+			if ((dupli.val != dupli.next.val)
+					&& !(demo.storeNodeValue.contains(dupli.next.val))) {
+
+				System.out.println("distint first value storing in array"
+						+ dupli.val);
+				demo.storeNodeValue.add(dupli.val);
+
+				dupli = dupli.next;
+
+			} else {
+				System.out.println("elem of array-->" +demo.storeNodeValue+ "Duplicate element"+dupli.next.val);
+				dupli.next = dupli.next.next;
+
+			}
+
+		}
+	}
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		demo = new LinkedListDemo();
-		demo.head = new ListNode(1);
+		demo.head = new ListNode(2);
 		ListNode second = new ListNode(2);
-		ListNode third = new ListNode(2);
-		ListNode forth = new ListNode(1);
+		ListNode third = new ListNode(4);
+		ListNode forth = new ListNode(5);
 		// ListNode fifth = new ListNode(15);
 		// linking part:-
 
@@ -228,18 +264,26 @@ public class LinkedListDemo {
 
 		// Test Traversal
 		demo.traversalList(demo.head);
-		// System.out.println(" ");
-		// demo.traversalList(demo.headTwo);
 
-		demo.isPalindrome(demo.head);
+		// demo.removeDuplicates(demo.head);
 
-		System.out.println("After reversal printing the First half");
+		  demo.removeDuplicatesUnsorted(demo.head);
+		System.out.println("After duplicate removal");
 
 		demo.traversalList(demo.head);
 
-		System.out.println("After reversal printing the second half");
+		// System.out.println(" ");
+		// demo.traversalList(demo.headTwo);
 
-		demo.traversalList(demo.reverseCheck);
+		// demo.isPalindrome(demo.head);
+
+		// System.out.println("After reversal printing the First half");
+
+		// demo.traversalList(demo.head);
+
+		// System.out.println("After reversal printing the second half");
+
+		// demo.traversalList(demo.reverseCheck);
 
 		// demo.mergeSortedList(demo.head,demo.headTwo);
 
