@@ -10,6 +10,8 @@ public class LinkedListTwo {
 	ListNode fastPointPali;
 	ListNode reverseCheck;
 	ListNode newHead;
+	ListNode slowcut ;
+	int reorderSwitch=1;
 	ArrayList<Integer> storeNodeValue = new ArrayList<Integer>();
 	static LinkedListTwo demo;
 
@@ -41,7 +43,7 @@ public class LinkedListTwo {
 			System.out.print(n.val + "------>");
 			n = n.next;
 		}
-
+System.out.println("NULL");
 	}
 
 	public String findelemRecursive(ListNode findElem, int key) {
@@ -88,7 +90,7 @@ public class LinkedListTwo {
 
 	public ListNode returnSlowFastPalindrome(ListNode curr) {
 		slowPointPali = curr;
-		ListNode slowcut = slowPointPali;
+		 slowcut = slowPointPali;
 		fastPointPali = slowPointPali;
 
 		while (fastPointPali != null && fastPointPali.next != null) {
@@ -113,7 +115,7 @@ public class LinkedListTwo {
 			fastPoint = fastPoint.next.next;
 
 			if (slowPoint == fastPoint) {
-				System.out.println("Cycle detected");
+				System.out.println("Cycle detected" + slowPoint.val);
 				break;
 			}
 
@@ -314,6 +316,40 @@ public class LinkedListTwo {
 		}
 
 	}
+	
+	
+	
+	
+	public void reorderList(ListNode check)
+	{
+		boolean isEven = (this.findCount(check) % 2 == 0 ? true : false);
+		ListNode p1, p2,preMiddle;
+		this.returnSlowFastPalindrome(check);
+		
+		
+		if (isEven) {
+			// TODO for even block
+
+			// Reverse the second half;
+
+			this.reversUtil(demo.slowPointPali, null);
+			p1 = demo.head;
+			p2 = demo.reverseCheck;
+      preMiddle=demo.slowcut;
+			while(p1!=preMiddle){
+                preMiddle.next=p2.next;
+                p2.next=p1.next;
+                p1.next=p2;
+                p1=p2.next;
+                p2=preMiddle.next;
+            }
+        }
+
+			
+
+		}
+		
+	
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -322,15 +358,16 @@ public class LinkedListTwo {
 		ListNode second = new ListNode(2);
 		ListNode third = new ListNode(3);
 		ListNode forth = new ListNode(4);
-		ListNode fifth = new ListNode(5);
+		//ListNode fifth = new ListNode(5);
 		// linking part:-
 
 		demo.head.next = second;
 		second.next = third;
 		third.next = forth;
-		forth.next = fifth;
+		forth.next = null;
+		//forth.next = fifth;
 
-		fifth.next = null;
+		//fifth.next = null;
 
 		// Second list
 
@@ -354,9 +391,20 @@ public class LinkedListTwo {
 
 		// demo.createIntersectionList(demo.head, demo.headTwo);
 
-		demo.rotateList(demo.head, 17);
+		//demo.rotateList(demo.head, 17);
+		//System.out.println("  ");
+		// demo.traversalList(demo.newHead);
+		 
+		 
+		 demo.reorderList(demo.head);
+		 
 		System.out.println("  ");
-		 demo.traversalList(demo.newHead);
+		 demo.traversalList(demo.head);
+		//System.out.println("  ");
+		// demo.traversalList(demo.reverseCheck);
+		// System.out.println("  ");
+		 
+		 
 
 	}
 
