@@ -25,17 +25,7 @@ public class LinkedListTwo {
 		}
 	}
 
-	public int findCount(ListNode n) {
-		// ListNode n = head;
-		int listCount = 0;
-		while (n != null) {
-			// System.out.print(n.val+"------>");
-			n = n.next;
-			listCount++;
-
-		}
-		return listCount;
-	}
+	
 
 	public void traversalList(ListNode n) {
 		// ListNode n = head;
@@ -349,45 +339,114 @@ System.out.println("NULL");
 
 		}
 		
-	
+	public int findCount(ListNode n) {
+		// ListNode n = head;
+		int listCount = 0;
+		while (n != null) {
+			// System.out.print(n.val+"------>");
+			n = n.next;
+			listCount++;
 
+		}
+		return listCount;
+	}
+	
+	public double traversalandGiveresultList(ListNode n,int lenght) {
+		// ListNode n = head;
+		double finalRes=0;
+		
+		while (n != null) {
+			double calculate=0;
+			//System.out.print(n.val + "------>");
+			
+		calculate = n.val * Math.pow(10, --lenght);
+		finalRes+=calculate;	
+			n = n.next;
+		}
+return finalRes;
+	}
+	
+	public ListNode createNewList(double finalListvalue)
+	{
+		ListNode finalListhead;
+		String numWihoutDecimal = String.valueOf(finalListvalue).split("\\.")[0];
+		//System.out.println(numWihoutDecimal);
+		//System.out.println(numWihoutDecimal.length());
+		char numWithoutDecimalChar[]=numWihoutDecimal.toCharArray();
+		
+		
+		/*for(char newvalue : numWithoutDecimalChar)
+		{
+			System.out.println(newvalue);
+		}*/
+		
+		finalListhead=this.createListRecursive(numWithoutDecimalChar, (numWithoutDecimalChar.length)-1, 0);
+		
+	  return finalListhead;
+	}
+	
+	
+	public ListNode createListRecursive(char[] tocreate,int lenght,int piker)
+	{
+		ListNode newNode=null;
+		if(lenght == 0)
+		{
+			//last node
+			newNode=new ListNode(Integer.parseInt(tocreate[piker]+""));
+			return newNode;
+		}
+		
+		else
+		{
+			newNode=new ListNode(Integer.parseInt(tocreate[piker]+""));
+			piker++;
+			lenght--;
+			
+			newNode.next=this.createListRecursive(tocreate, lenght, piker);
+		}
+		
+		return newNode;
+	}
+	
+	
+	
+	
+	 public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+	//  int x=0;
+	  //int y=0;
+	//	 System.out.println("Math.pow(" + x + "," + y + ")=" + Math.pow(x, y));
+		 ListNode finalV=null;
+		int firstListLength = this.findCount(l1);
+		int secondListLength = this.findCount(l2);
+		
+		 double firstListVal=this.traversalandGiveresultList(l1, firstListLength);
+		 double secondListVal=this.traversalandGiveresultList(l2, secondListLength);
+		 System.out.println("firstlistval" + firstListVal + "seconListValue"+ secondListVal);
+		 double finalListVal = firstListVal+secondListVal;
+		 System.out.println("FinalListVal"+finalListVal);
+		 finalV=this.createNewList(finalListVal);
+		 return finalV;
+	    }	
+
+	
+	
+	
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		String list1="9";
+		String list2="1999999999";
 		demo = new LinkedListTwo();
-		demo.head = new ListNode(1);
-		ListNode second = new ListNode(2);
-		ListNode third = new ListNode(3);
-		ListNode forth = new ListNode(4);
-		//ListNode fifth = new ListNode(5);
-		// linking part:-
-
-		demo.head.next = second;
-		second.next = third;
-		third.next = forth;
-		forth.next = null;
-		//forth.next = fifth;
-
-		//fifth.next = null;
-
-		// Second list
-
-		demo.headTwo = new ListNode(1);
-		ListNode secondTwo = new ListNode(2);
-		ListNode thirdTwo = new ListNode(3);
-		ListNode forthTwo = new ListNode(4);
-		ListNode fifthTwo = new ListNode(10);
-
-		demo.headTwo.next = secondTwo;
-		secondTwo.next = thirdTwo;
-		thirdTwo.next = forthTwo;
-		forthTwo.next = fifthTwo;
-		fifthTwo.next = null;
+		demo.head = demo.createListRecursive(list1.toCharArray(), list1.length()-1, 0);
+		demo.headTwo=demo.createListRecursive(list2.toCharArray(), list2.length()-1, 0);
+		demo.traversalList(demo.head);
+		demo.traversalList(demo.headTwo);
 
 		// demo.traversalList(demo.head);
 
 		// System.out.println("\n");
 
-		 demo.traversalList(demo.head);
+		// demo.traversalList(demo.head);
 
 		// demo.createIntersectionList(demo.head, demo.headTwo);
 
@@ -396,15 +455,15 @@ System.out.println("NULL");
 		// demo.traversalList(demo.newHead);
 		 
 		 
-		 demo.reorderList(demo.head);
+		// demo.reorderList(demo.head);
 		 
-		System.out.println("  ");
-		 demo.traversalList(demo.head);
+	//	System.out.println("  ");
+		// demo.traversalList(demo.head);
 		//System.out.println("  ");
 		// demo.traversalList(demo.reverseCheck);
 		// System.out.println("  ");
 		 
-		 
+		demo.addTwoNumbers(demo.head, demo.headTwo);
 
 	}
 
