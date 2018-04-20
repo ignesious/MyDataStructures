@@ -1,6 +1,10 @@
 package tree;
 
+//
 
+// ctrl shift / is commenting block comment uncommenting \
+
+// just ctrl / comment ctrl \ is uncomment.
 
 class TreeNode {
     int val;
@@ -15,6 +19,25 @@ public class TreeOne {
  TreeNode first;
  TreeNode second;
 	
+ 
+ public TreeNode insertLevelOrder(int[] arr, TreeNode root, int i)
+{
+// Base case for recursion
+if (i < arr.length) {
+TreeNode temp = new TreeNode(arr[i]);
+root = temp;
+
+// insert left child
+root.left = insertLevelOrder(arr, root.left,
+      2 * i + 1);
+
+// insert right child
+root.right = insertLevelOrder(arr, root.right,
+        2 * i + 2);
+}
+return root;
+}
+ 
  
  public  void printBinaryTree(TreeNode root, int level){
 	    if(root==null)
@@ -60,16 +83,21 @@ public class TreeOne {
 	 System.out.print(root.val);
  }
  
+ 
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
 		TreeOne treeObj  = new TreeOne();
-		treeObj.root   = new TreeNode(5);	
+        int arr[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
+		
+		/*		treeObj.root   = new TreeNode(5);	
 	    treeObj.first  = new TreeNode(4);
-	    treeObj.second  = new TreeNode(8);
+	   treeObj.second  = new TreeNode(8);
 	    treeObj.root.left = treeObj.first;
-	    treeObj.root.right = treeObj.second;
-	   
+	    treeObj.root.right = treeObj.second;*/
+	  treeObj.root = treeObj.insertLevelOrder(arr, treeObj.root, 0);
+        
       treeObj.printBinaryTree(treeObj.root, 0);
        treeObj.inOrder(treeObj.root);
        System.out.println();
