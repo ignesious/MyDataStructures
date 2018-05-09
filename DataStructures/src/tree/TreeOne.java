@@ -10,7 +10,7 @@ class TreeNode {
     int val;
    TreeNode left;
    TreeNode right;
-    TreeNode(int x) { val = x; }
+    TreeNode(int x) { val = x; left =null ; right =null; }
 }
  
 
@@ -37,6 +37,8 @@ root.right = insertLevelOrder(arr, root.right,
 }
 return root;
 }
+ 
+
  
  
  public  void printBinaryTree(TreeNode root, int level){
@@ -83,21 +85,21 @@ return root;
 	 System.out.print(root.val);
  }
  
- 
+
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
 		TreeOne treeObj  = new TreeOne();
-        int arr[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
+        int arr[] = {-1,0,0,1,1,3,5};
 		
 		/*		treeObj.root   = new TreeNode(5);	
 	    treeObj.first  = new TreeNode(4);
 	   treeObj.second  = new TreeNode(8);
 	    treeObj.root.left = treeObj.first;
 	    treeObj.root.right = treeObj.second;*/
-	  treeObj.root = treeObj.insertLevelOrder(arr, treeObj.root, 0);
-        
+	 treeObj.root = treeObj.insertLevelOrder(arr, treeObj.root, 0);
+    //    treeObj.root = treeObj.createTree(arr, arr.length);
       treeObj.printBinaryTree(treeObj.root, 0);
        treeObj.inOrder(treeObj.root);
        System.out.println();
