@@ -48,7 +48,7 @@ public class LongestCommonPrefix {
 
 		// System.out.println("Final prefixgetter" + prefixGetter);
 
-		if (prefixGetter > 1)
+		if (prefixGetter >= 1)
 			return inputList.get(0).substring(0, prefixGetter);
 		else
 
