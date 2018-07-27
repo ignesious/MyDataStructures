@@ -62,9 +62,9 @@ public class LongestCommonPrefix {
 		LongestCommonPrefix longComPrefixObj = new LongestCommonPrefix();
 		ArrayList<String> inputList = new ArrayList<String>();
 		inputList.add("abc");
-		inputList.add("ab");
-		inputList.add("abc");
-		longComPrefixObj.checkCommonPrefix(inputList);
+		inputList.add("abcdefgh");
+		inputList.add("abcdene");
+		System.out.println(longComPrefixObj.checkCommonPrefix(inputList));
 
 	}
 
