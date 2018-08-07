@@ -43,11 +43,11 @@ public class KLargestElement {
 	}
 
 	private int findKLargestElement(int input[], int k) {
-		PriorityQueue<Integer> pQueue = new PriorityQueue<Integer>(new pqsort());
-		constructHeap(pQueue, input);
+	//	PriorityQueue<Integer> pQueue = new PriorityQueue<Integer>(new pqsort());
+		//constructHeap(pQueue, input);
 
-		System.out.println("Elements of priority Queue--->" + pQueue);
-		extractkmin(pQueue, k);
+	//	System.out.println("Elements of priority Queue--->" + pQueue);
+	//	extractkmin(pQueue, k);
 		return 0;
 	}
 

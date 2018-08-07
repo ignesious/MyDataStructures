@@ -24,16 +24,15 @@ public class PositiveNegetive {
 	}
 
 	public void seperatePositiveNegetive(int input[]) {
-		PriorityQueue<Integer> pQueue = new PriorityQueue<Integer>(
-				new pqsort1());
+	//	PriorityQueue<Integer> pQueue = new PriorityQueue<Integer>(new pqsort1());
 
-		heapify(pQueue, input);
+	//	heapify(pQueue, input);
 		ArrayList<Integer> finalArray = new ArrayList<Integer>();
 		// Seperation
 
-		while (pQueue.peek() != null) {
-			finalArray.add(pQueue.poll());
-		}
+	//	while (pQueue.peek() != null) {
+	//		finalArray.add(pQueue.poll());
+	//	}
 
 		System.out.println("Final Array is" + finalArray);
 
