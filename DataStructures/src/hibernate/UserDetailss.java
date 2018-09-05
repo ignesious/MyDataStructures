@@ -5,11 +5,19 @@ import javax.persistence.Id;
 
 
 @Entity
-public class UserDetails {
+public class UserDetailss {
 @Id
 private int userId;
 private String userName;
 private String phonenumber;
+private int dapaChange;
+
+public int getDapaChange() {
+	return dapaChange;
+}
+public void setDapaChange(int dapaChange) {
+	this.dapaChange = dapaChange;
+}
 public String getPhonenumber() {
 	return phonenumber;
 }
