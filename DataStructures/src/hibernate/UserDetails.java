@@ -2,7 +2,10 @@ package hibernate;
 
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -20,18 +23,25 @@ private int userId;
 private String userName;
 @Temporal (TemporalType.TIME)
 private Date joinedDate;
-@Embedded
-private Address address;
+//@Embedded
+//private Address address;
 @Lob
 private String description;
+@ElementCollection
+private Set<Address> listOfAddress= new HashSet<Address>();
 
-
-public Address getAddress() {
-	return address;
+public Set<Address> getListOfAddress() {
+	return listOfAddress;
 }
-public void setAddress(Address address) {
-	this.address = address;
+public void setListOfAddress(Set<Address> listOfAddress) {
+	this.listOfAddress = listOfAddress;
 }
+//public Address getAddress() {
+//	return address;
+//}
+//public void setAddress(Address address) {
+//	this.address = address;
+//}
 public Date getJoinedDate() {
 	return joinedDate;
 }

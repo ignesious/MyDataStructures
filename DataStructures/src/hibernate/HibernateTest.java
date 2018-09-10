@@ -13,22 +13,32 @@ public class HibernateTest {
 		// TODO Auto-generated method stub
 		UserDetails userDetails = new UserDetails();
 		Address userAddress=new Address();
+		Address userAddress2=new Address();
 		userAddress.setCity("Madurai");
 		userAddress.setCountry("India");
 		userAddress.setPincode("625001");
 		userAddress.setState("TamilNadu");
+		
+		userAddress2.setCity("Chennai");
+		userAddress2.setCountry("India");
+		userAddress2.setPincode("625001");
+		userAddress2.setState("TamilNadu");
+		
+		
 	//	UserDetailss userDetails1 = new UserDetailss();
 		userDetails.setUserId(1);
 		userDetails.setUserName("First User");
 	//	userDetails.setAddress("First Address");
 		userDetails.setJoinedDate(new Date());
 		userDetails.setDescription("Description of user goes here");
-		userDetails.setAddress(userAddress);
+	    userDetails.getListOfAddress().add(userAddress);
+	    userDetails.getListOfAddress().add(userAddress2);
      //   userDetails.setPhonenumber("56");
 //        userDetails1.setUserId(6);
 //		userDetails1.setUserName("mohammedbismillah");
 //        userDetails1.setPhonenumber("56");
         
+		
 		try {
 			SessionFactory sessionFactory= new Configuration().configure().buildSessionFactory();
 			Session session=sessionFactory.openSession();
