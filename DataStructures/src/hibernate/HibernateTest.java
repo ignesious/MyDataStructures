@@ -12,27 +12,46 @@ public class HibernateTest {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		UserDetails userDetails = new UserDetails();
-		Address userAddress=new Address();
-		Address userAddress2=new Address();
-		userAddress.setCity("Madurai");
-		userAddress.setCountry("India");
-		userAddress.setPincode("625001");
-		userAddress.setState("TamilNadu");
+		Vehicle vehicleDetails1=new Vehicle();
+		//Vehicle vehicleDetails2=new Vehicle();
+//		Address userAddress=new Address();
+//		Address userAddress2=new Address();
+//		userAddress.setCity("Madurai");
+//		userAddress.setCountry("India");
+//		userAddress.setPincode("625001");
+//		userAddress.setState("TamilNadu");
+//		
+//		userAddress2.setCity("Chennai");
+//		userAddress2.setCountry("India");
+//		userAddress2.setPincode("625001");
+//		userAddress2.setState("TamilNadu");
 		
-		userAddress2.setCity("Chennai");
-		userAddress2.setCountry("India");
-		userAddress2.setPincode("625001");
-		userAddress2.setState("TamilNadu");
+		
+	/*	for(int i=0;i<10;i++)
+		{
+			Address loopuserAddress=new Address();
+			loopuserAddress.setCity("Chennai " + i);
+			loopuserAddress.setCountry("India");
+			loopuserAddress.setPincode("625001");
+			loopuserAddress.setState("TamilNadu");
+			userDetails.getListOfAddress().add(loopuserAddress);
+		}*/
 		
 		
 	//	UserDetailss userDetails1 = new UserDetailss();
-		userDetails.setUserId(1);
+	//	userDetails.setUserId(1);
 		userDetails.setUserName("First User");
+		vehicleDetails1.setVehicleName("Bullet");
+		userDetails.setVehicle(vehicleDetails1);
+		vehicleDetails1.setUserdetails(userDetails);
+	//	vehicleDetails2.setVehicleName("Mopet");
+	//	userDetails.getVehicle().add(vehicleDetails1);
+	//	userDetails.getVehicle().add(vehicleDetails2);
 	//	userDetails.setAddress("First Address");
-		userDetails.setJoinedDate(new Date());
-		userDetails.setDescription("Description of user goes here");
-	    userDetails.getListOfAddress().add(userAddress);
-	    userDetails.getListOfAddress().add(userAddress2);
+//		userDetails.setJoinedDate(new Date());
+//		userDetails.setDescription("Description of user goes here");
+//	    userDetails.getListOfAddress().add(userAddress);
+	//    userDetails.getListOfAddress().add(userAddress2);
      //   userDetails.setPhonenumber("56");
 //        userDetails1.setUserId(6);
 //		userDetails1.setUserName("mohammedbismillah");
@@ -43,7 +62,10 @@ public class HibernateTest {
 			SessionFactory sessionFactory= new Configuration().configure().buildSessionFactory();
 			Session session=sessionFactory.openSession();
 			session.beginTransaction();
+			session.save(vehicleDetails1);
 			session.save(userDetails);
+			
+		//	session.save(vehicleDetails2);
 		//	session.save(userDetails1);
 			session.getTransaction().commit();
 			session.close();
@@ -54,16 +76,18 @@ public class HibernateTest {
 			
 			
 			
-	/*		// RETREIVAL PART
+//			// RETREIVAL PART
+//			
+//			userDetails = null;
+//			session=sessionFactory.openSession();
+//			session.beginTransaction();
+//			
+//			userDetails  = (UserDetails)session.get(UserDetails.class, 1);
+//			
+//			//System.out.println("Retreived in JVM-----> "+ userDetails.getAddress().getCountry());
+//			session.close();
+//			System.out.println("Collection is--->"+userDetails.getListOfAddress().size());
 			
-			userDetails = null;
-			session=sessionFactory.openSession();
-			session.beginTransaction();
-			
-			userDetails  = (UserDetails)session.get(UserDetails.class, 1);
-			
-			System.out.println("Retreived in JVM-----> "+ userDetails.getAddress().getCountry());
-			session.close();*/
 			
 			
 		} catch (Exception e) {

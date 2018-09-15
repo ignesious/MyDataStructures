@@ -23,6 +23,6 @@
 		<property name="format_sql">true</property> <!-- Show SQL formatted -->
 		
 		<mapping class="hibernate.UserDetails"/>
-		
+		<mapping class="hibernate.Vehicle"/>
 	</session-factory>
 </hibernate-configuration>
