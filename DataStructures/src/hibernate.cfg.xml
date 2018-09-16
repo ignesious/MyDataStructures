@@ -17,12 +17,14 @@
    		<property name="connection.password">s@hi786IM</property> <!-- DB Password -->
    		
    		<property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property> <!-- DB Dialect -->
-   		<property name="hbm2ddl.auto">create</property> <!-- create / create-drop / update -->
+   		<property name="hbm2ddl.auto">update</property> <!-- create / create-drop / update -->
 		
 		<property name="show_sql">true</property> <!-- Show SQL in console -->
 		<property name="format_sql">true</property> <!-- Show SQL formatted -->
 		
-		<mapping class="hibernate.UserDetails"/>
+		<!--  mapping class="hibernate.UserDetails"/>
 		<mapping class="hibernate.Vehicle"/>
+		<mapping class="hibernate.TwoWheeler"/-->
+		<mapping class="hibernate.UserDetails2"/>
 	</session-factory>
 </hibernate-configuration>

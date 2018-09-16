@@ -13,6 +13,9 @@ public class HibernateTest {
 		// TODO Auto-generated method stub
 		UserDetails userDetails = new UserDetails();
 		Vehicle vehicleDetails1=new Vehicle();
+		Vehicle vehicleDetails2=new Vehicle();
+		TwoWheeler twoWheelerrun=new TwoWheeler();
+		TwoWheeler twoWheelerrun2=new TwoWheeler();
 		//Vehicle vehicleDetails2=new Vehicle();
 //		Address userAddress=new Address();
 //		Address userAddress2=new Address();
@@ -42,8 +45,24 @@ public class HibernateTest {
 	//	userDetails.setUserId(1);
 		userDetails.setUserName("First User");
 		vehicleDetails1.setVehicleName("Bullet");
-		userDetails.setVehicle(vehicleDetails1);
+		vehicleDetails2.setVehicleName("Mopet");
+		
+//		userDetails.setVehicle(vehicleDetails1);
+		userDetails.getVehicleCollection().add(vehicleDetails1);
+		userDetails.getVehicleCollection().add(vehicleDetails2);
 		vehicleDetails1.setUserdetails(userDetails);
+		vehicleDetails2.setUserdetails(userDetails);
+		
+		
+		twoWheelerrun.setUserdetails(userDetails);
+		twoWheelerrun.setSteeringHandle("BikeSHit");
+		twoWheelerrun.setVehicleName("TwoWheelerYamaha");
+		twoWheelerrun2.setUserdetails(userDetails);
+		twoWheelerrun2.setSteeringHandle("BikeSHit2");
+		twoWheelerrun2.setVehicleName("TwoWheelerYamaha2");
+		userDetails.getTwovehicleCollection().add(twoWheelerrun);
+		userDetails.getTwovehicleCollection().add(twoWheelerrun2);
+		
 	//	vehicleDetails2.setVehicleName("Mopet");
 	//	userDetails.getVehicle().add(vehicleDetails1);
 	//	userDetails.getVehicle().add(vehicleDetails2);
@@ -59,17 +78,21 @@ public class HibernateTest {
         
 		
 		try {
-			SessionFactory sessionFactory= new Configuration().configure().buildSessionFactory();
+			/*SessionFactory sessionFactory= new Configuration().configure().buildSessionFactory();
 			Session session=sessionFactory.openSession();
 			session.beginTransaction();
 			session.save(vehicleDetails1);
+			session.save(vehicleDetails2);
+			session.save(twoWheelerrun);
+			session.save(twoWheelerrun2);
 			session.save(userDetails);
+			
 			
 		//	session.save(vehicleDetails2);
 		//	session.save(userDetails1);
 			session.getTransaction().commit();
 			session.close();
-			
+			*/
 		
 			
 			

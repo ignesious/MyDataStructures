@@ -31,14 +31,24 @@ public class UserDetails {
 @GeneratedValue(strategy=GenerationType.AUTO)
 private int userId;
 private String userName;
-@OneToOne
-private Vehicle vehicle;
+@OneToMany(mappedBy="userdetails")
+private Collection<Vehicle> vehicleCollection= new ArrayList<Vehicle>();
 
-public Vehicle getVehicle() {
-	return vehicle;
+@OneToMany(mappedBy="userdetails")
+private Collection<TwoWheeler> twovehicleCollection= new ArrayList<TwoWheeler>();;
+
+
+public Collection<TwoWheeler> getTwovehicleCollection() {
+	return twovehicleCollection;
 }
-public void setVehicle(Vehicle vehicle) {
-	this.vehicle = vehicle;
+public void setTwovehicleCollection(Collection<TwoWheeler> twovehicleCollection) {
+	this.twovehicleCollection = twovehicleCollection;
+}
+public Collection<Vehicle> getVehicleCollection() {
+	return vehicleCollection;
+}
+public void setVehicleCollection(Collection<Vehicle> vehicleCollection) {
+	this.vehicleCollection = vehicleCollection;
 }
 //@Temporal (TemporalType.TIME)
 //private Date joinedDate;
