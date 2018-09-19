@@ -1,7 +1,7 @@
-package randomCategory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,87 +11,25 @@ import java.util.Map;
  */
 
 class LRUCache {
-	private int pageSize;
 
-	Map<Integer, Integer> cacheMap = new HashMap<Integer, Integer>();
-	List<Integer> logicList = new ArrayList<Integer>();
-
-	public LRUCache(int pageSize) {
-		this.pageSize = pageSize;
-	}
-
-	public int get(int key) {
-
-		if (cacheMap.containsKey(key)) {
-
-			// logic to add the value to the first of the list
-
-			int valueToAddFirst = logicList.get(logicList.size() - 1);
-			logicList.remove(logicList.size() - 1);
-			logicList.add(0, valueToAddFirst);
-			// System.out.println("Logic List on get method state" + logicList);
-
-			return cacheMap.get(key);
-		}
-
-		return -1;
-	}
-
-	public void put(int inputkey, int inputvalue) {
-
-		if (cacheMap.size() == pageSize) {
-
-			if (cacheMap.containsKey(inputkey)) {
-
-				// logic to add the value to the first of the list
-
-				int indexis = logicList.indexOf(inputkey);
-
-				logicList.remove(indexis);
-				logicList.add(0, inputkey);
-				cacheMap.put(inputkey, inputvalue);
-				// System.out
-				// .println("Logic List on get method state" + logicList);
-
-			}
-
-			else {
-
-				// System.out.println("Page size is reached");
-
-				int valueToRemove = logicList.get(logicList.size() - 1);
-
-				// System.out.println("##########Deleting the entry here");
-				cacheMap.remove(valueToRemove);
-
-				// System.out.println("###########After Deletion map is"
-				// + cacheMap);
-				// System.out.println("CacheMap After removal" + cacheMap);
-				logicList.remove(logicList.size() - 1);
-				// System.out.println("List after Removal" + logicList);
-
-				// To add Portion
-
-				cacheMap.put(inputkey, inputvalue);
-				logicList.add(0, inputkey);
-
-				// System.out.println("Map and list at end of addtion put"
-				// + cacheMap + "List at the end is" + logicList);
-
-			}
-		}
-
-		else {
-
-			cacheMap.put(inputkey, inputvalue);
-			logicList.add(0, inputkey);
-			// System.out
-			// .println("List and map on addition but size not reached yet"
-			// + cacheMap + "List is" + logicList);
-
-		}
-
-	}
+    private  LinkedHashMap<Integer,Integer> cache;
+    
+    public LRUCache(int capacity) {
+        cache = new LinkedHashMap<Integer, Integer>(capacity, /* loadFactor */ 0.75f, /* accessOrder */ true) {
+            @Override
+            protected boolean removeEldestEntry(Map.Entry eldest) {
+                return size() > capacity;
+            }    
+        };
+    }
+    
+    public int get(int key) {
+        return cache.getOrDefault(key, -1);
+    }
+    
+    public void put(int key, int value) {
+        cache.put(key, value);
+    }
 }
 
 public class LruCacheImplementation {
