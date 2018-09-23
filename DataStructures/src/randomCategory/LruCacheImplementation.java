@@ -1,9 +1,7 @@
 package randomCategory;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 /*
@@ -39,16 +37,49 @@ import java.util.Map;
 
 class LRUCache2 {
 
-	private LinkedHashMap<Integer, Integer> cache;
+	private LinkedHashMap<Character, Character> cache;
+	private String input;
 
-	public LRUCache2(int capacity) {
-		cache = new LinkedHashMap<Integer, Integer>(capacity, /* loadFactor */
-		0.75f, /* accessOrder */true) {
+	public LRUCache2(int capacity, String input) {
+
+		this.input = input;
+
+			cache = new LinkedHashMap<Character, Character>(capacity, /* loadFactor */
+			0.75f, /* accessOrder */true) {
 			@Override
 			protected boolean removeEldestEntry(Map.Entry eldest) {
 				return size() > capacity;
 			}
 		};
+
+		this.triggerCache();
+
+	}
+
+	private void triggerCache() {
+		// TODO Auto-generated method stub
+
+		String toProcess[] = input.split(" ");
+		String specialCharacters = " !#$%&'()*+,-./:;<=>?@[]^_`{|}";
+
+		for (String temp : toProcess) {
+			char charToInsert = temp.charAt(0);
+			System.out.println("To Process char is " + charToInsert);
+
+			// special character shit
+			if (specialCharacters.contains(Character.toString(charToInsert))) {
+				System.out.println("special character encountered breaking");
+
+				break;
+			}
+
+			else
+				this.refer(charToInsert);
+
+		}
+
+		this.display();
+
 	}
 
 	// public int get(int key) {
@@ -59,9 +90,9 @@ class LRUCache2 {
 	// cache.put(key, value);
 	// }
 
-	public void refer(int key) {
+	public void refer(Character key) {
 		if (cache.containsKey(key)) {
-			cache.getOrDefault(key, -1);
+			cache.get(key);
 		} else {
 			cache.put(key, null);
 		}
@@ -70,7 +101,7 @@ class LRUCache2 {
 
 	public void display() {
 		StringBuilder sb = new StringBuilder();
-		for (int key : cache.keySet()) {
+		for (Character key : cache.keySet()) {
 			sb.append(key + " ");
 		}
 
@@ -84,7 +115,7 @@ public class LruCacheImplementation {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		LRUCache2 ca = new LRUCache2(4);
+		LRUCache2 ca = new LRUCache2(4, "1 2 3 s a b c d i n t h e 4 5");
 
 		/*
 		 * cache.put(1, 1); cache.put(2, 2); System.out.println("Value got is" +
@@ -106,13 +137,13 @@ public class LruCacheImplementation {
 		// System.out.println("Value got is" + cache.get(1));
 		// System.out.println("Value got is" + cache.get(2));
 
-		ca.refer(1);
-		ca.refer(2);
-		ca.refer(3);
-		ca.refer(1);
-		ca.refer(4);
-		ca.refer(5);
-		ca.display();
+		// ca.refer(1);
+		// ca.refer(2);
+		// ca.refer(3);
+		// ca.refer(1);
+		// ca.refer(4);
+		// ca.refer(5);
+		// ca.display();
 
 	}
 

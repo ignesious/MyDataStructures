@@ -42,7 +42,7 @@ public class PascalHockeyStick {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-generateHockeyStick(2, 4);
+generateHockeyStick(6, 7);
 	}
 
 }
