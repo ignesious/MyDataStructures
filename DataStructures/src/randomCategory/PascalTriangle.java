@@ -10,7 +10,7 @@ public class PascalTriangle {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int n = 20;
+		int n = 1000;
 		long matter[][] = new long[n][n];
 
 		for (int line = 0; line < n; line++) {
