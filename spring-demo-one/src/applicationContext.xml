@@ -9,6 +9,20 @@
 
 	<!-- Define your beans here -->
 
-	<bean id="myCoach" class="com.momo.spring.BaseballCoach">
+
+	<!-- It will construc all the object and inject the dependencies here...! 
+		THis is called DI usual shit. -->
+	<!--bean id="myCoach" class="com.momo.spring.BaseballCoach">
+		<constructor-arg ref="myFortune"></constructor-arg>
+		
+	</bean-->
+	
+	<bean id="myCrickCoach" class="com.momo.spring.CricketCoach">
+		
+		<property name="fortuneService" ref="myFortune"></property>
 	</bean>
+
+	<bean id="myFortune" class="com.momo.spring.HappyFortuneService">
+	</bean>
+
 </beans>
