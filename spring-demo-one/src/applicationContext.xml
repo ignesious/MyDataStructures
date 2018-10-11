@@ -19,11 +19,13 @@
 	
 	<bean id="myCrickCoach" class="com.momo.spring.CricketCoach">
 		
-		<property name="fortuneService" ref="myFortune"></property>
+		<property name="fortuneService" ref="myRandFortune"></property>
 		
 	</bean>
 
 	<bean id="myFortune" class="com.momo.spring.HappyFortuneService">
 	</bean>
-
+ 
+    <bean id="myRandFortune" class="com.momo.spring.RandomFortune">
+	</bean>
 </beans>
