@@ -8,7 +8,7 @@
     http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- Define your beans here -->
-
+ <context:property-placeholder location="classpath:sport.properties"/> 
 
 	<!-- It will construc all the object and inject the dependencies here...! 
 		THis is called DI usual shit. -->
@@ -20,6 +20,7 @@
 	<bean id="myCrickCoach" class="com.momo.spring.CricketCoach">
 		
 		<property name="fortuneService" ref="myFortune"></property>
+		
 	</bean>
 
 	<bean id="myFortune" class="com.momo.spring.HappyFortuneService">
