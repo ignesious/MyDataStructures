@@ -1,111 +1,142 @@
 package tree;
-
-//
-
-// ctrl shift / is commenting block comment uncommenting \
-
-// just ctrl / comment ctrl \ is uncomment.
+/*
+ * https://www.geeksforgeeks.org/binary-search-tree-set-1-search-and-insertion/
+ * 
+ */
 
 class TreeNode {
-    int val;
-   TreeNode left;
-   TreeNode right;
-    TreeNode(int x) { val = x; left =null ; right =null; }
+	int val;
+	TreeNode left;
+	TreeNode right;
+
+	TreeNode(int x) {
+		val = x;
+		left = null;
+		right = null;
+	}
 }
- 
 
 public class TreeOne {
- TreeNode root;
- TreeNode first;
- TreeNode second;
-	
- 
- public TreeNode insertLevelOrder(int[] arr, TreeNode root, int i)
-{
-// Base case for recursion
-if (i < arr.length) {
-TreeNode temp = new TreeNode(arr[i]);
-root = temp;
+	TreeNode root;
+	TreeNode first;
+	TreeNode second;
 
-// insert left child
-root.left = insertLevelOrder(arr, root.left,
-      2 * i + 1);
+	public void insert(int key) {
+		root = insertRec(root, key);
+	}
 
-// insert right child
-root.right = insertLevelOrder(arr, root.right,
-        2 * i + 2);
-}
-return root;
-}
- 
+	/* A recursive function to insert a new key in BST */
+	TreeNode insertRec(TreeNode root, int key) {
 
- 
- 
- public  void printBinaryTree(TreeNode root, int level){
-	    if(root==null)
-	         return;
-	    printBinaryTree(root.right, level+1);
-	    if(level!=0){
-	        for(int i=0;i<level-1;i++)
-	            System.out.print("|\t");
-	            System.out.println("|-------"+root.val);
-	    }
-	    else
-	        System.out.println(root.val);
-	    printBinaryTree(root.left, level+1);
-	}  
- 
- 
- public void inOrder(TreeNode root)
- {
-	 if(root == null)
-		 return;
-	 
-	 inOrder(root.left);
-	 System.out.print(root.val);
-	 inOrder(root.right);
- }
- 
- public void preOrder(TreeNode root)
- {
-	 if(root == null)
-		 return;
-	 System.out.print(root.val);
-	 preOrder(root.left);
-	 preOrder(root.right);
- }
- 
- public void postOrder(TreeNode root)
- {
-	 if(root == null)
-		 return;
-	
-	 postOrder(root.left);
-	 postOrder(root.right);
-	 System.out.print(root.val);
- }
- 
+		/* If the tree is empty, return a new node */
+		if (root == null) {
+			root = new TreeNode(key);
+			return root;
+		}
 
+		/* Otherwise, recur down the tree */
+		if (key < root.val)
+			root.left = insertRec(root.left, key);
+		else if (key > root.val)
+			root.right = insertRec(root.right, key);
+
+		/* return the (unchanged) node pointer */
+		return root;
+	}
+
+	public void printBinaryTree(TreeNode root, int level) {
+		if (root == null)
+			return;
+		printBinaryTree(root.right, level + 1);
+		if (level != 0) {
+			for (int i = 0; i < level - 1; i++)
+				System.out.print("|\t");
+			System.out.println("|-------" + root.val);
+		} else
+			System.out.println(root.val);
+		printBinaryTree(root.left, level + 1);
+	}
+
+	public void inOrder(TreeNode root) {
+		if (root == null)
+			return;
+
+		inOrder(root.left);
+		System.out.print(root.val);
+		inOrder(root.right);
+	}
+
+	public void preOrder(TreeNode root) {
+		if (root == null)
+			return;
+		System.out.print(root.val);
+		preOrder(root.left);
+		preOrder(root.right);
+	}
+
+	public void postOrder(TreeNode root) {
+		if (root == null)
+			return;
+
+		postOrder(root.left);
+		postOrder(root.right);
+		System.out.print(root.val);
+	}
+
+	public void insertFromArray(int a[], TreeOne treeObj) {
+		for (int i : a) {
+			treeObj.insert(i);
+		}
+
+	}
+
+	private void traversals(TreeOne treeObj) {
+		System.out.println("-----------------INORDER-------------------");
+		treeObj.inOrder(treeObj.root);
+		System.out.println();
+		System.out.println("-----------------PREORDER-------------------");
+		treeObj.preOrder(treeObj.root);
+		System.out.println();
+		System.out.println("-----------------POSTORDER-------------------");
+		treeObj.postOrder(treeObj.root);
+	}
+
+	/*
+	 * https://practice.geeksforgeeks.org/problems/check-for-bst/1
+	 * https://youtu.be/MILxfAbIhrE
+	 * https://github.com/mission-peace/interview/blob/master/src/com/interview/tree
+	 * /IsBST.java
+	 * 
+	 */
+	public boolean isBst(TreeNode root) {
+
+		return isBst(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+	}
+
+	private boolean isBst(TreeNode root, int min, int max) {
+
+		if (root == null) {
+			return true;
+		}
+
+		if (root.val <= min || root.val > max) {
+			return false;
+		}
+
+		return (isBst(root.left, min, root.val) && isBst(root.right, root.val, max));
+	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-         // Jus to commit the changes doing this.
-		TreeOne treeObj  = new TreeOne();
-        int arr[] = {-1,0,0,1,1,3,5};
-		
-		/*		treeObj.root   = new TreeNode(5);	
-	    treeObj.first  = new TreeNode(4);
-	   treeObj.second  = new TreeNode(8);
-	    treeObj.root.left = treeObj.first;
-	    treeObj.root.right = treeObj.second;*/
-	 treeObj.root = treeObj.insertLevelOrder(arr, treeObj.root, 0);
-    //    treeObj.root = treeObj.createTree(arr, arr.length);
-      treeObj.printBinaryTree(treeObj.root, 0);
-       treeObj.inOrder(treeObj.root);
-       System.out.println();
-       treeObj.preOrder(treeObj.root);
-       System.out.println();
-       treeObj.postOrder(treeObj.root);	
+
+		TreeOne treeObj = new TreeOne();
+
+		int a[] = { 1, 2, 3 };
+
+		treeObj.insertFromArray(a, treeObj);
+		treeObj.printBinaryTree(treeObj.root, 0);
+
+		// treeObj.traversals(treeObj);
+		// System.out.println(treeObj.isBst(treeObj.root));
 	}
 
 }
