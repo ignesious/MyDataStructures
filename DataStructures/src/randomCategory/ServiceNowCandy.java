@@ -3,6 +3,7 @@ package randomCategory;
 /*
  * There are N children Standing in line.Each Child is assigned a rating value
  * 
+ * https://www.programcreek.com/2014/03/leetcode-candy-java/
  * 
  * You are giving candies to these children subjected to the following requirements.
  * 
